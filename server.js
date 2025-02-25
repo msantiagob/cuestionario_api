@@ -17,6 +17,7 @@ app.use(
   })
 );
 app.use(bodyParser.json({ limit: '10mb' }));
+// Configuración de la conexión a PostgreSQL
 
 // Configuración de la conexión a PostgreSQL
 const pool = new Pool({
