@@ -7,13 +7,14 @@ require('dotenv').config();
 
 const app = express();
 
-const corsOptions = {
-  origin: ['https://cuestionario.sonmyd.com', 'http://localhost:3000', 'http://localhost:5173'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-};
-
 // Middleware
-app.use(cors(corsOptions));// Aumentar el límite de tamaño para JSON
+app.use(
+  cors({
+    origin: 'https://cuestionario.sonmyd.com',
+    methods: ['POST'],
+    optionsSuccessStatus: 200,
+  })
+);
 app.use(bodyParser.json({ limit: '10mb' }));
 
 // Configuración de la conexión a PostgreSQL
@@ -79,7 +80,7 @@ app.post('/api/guardar-encuesta', async (req, res) => {
 
     console.log('Datos recibidos:', {
       respuestasLength: respuestas?.length,
-      contactoRecibido: !!contacto
+      contactoRecibido: !!contacto,
     });
 
     // Guardar toda la encuesta con las respuestas como JSON
