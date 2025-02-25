@@ -7,9 +7,16 @@ require('dotenv').config();
 
 const app = express();
 
+const corsOptions = {
+  origin: ['https://cuestionario.sonmyd.com', 'http://localhost:3000', 'http://localhost:5173'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+  optionsSuccessStatus: 204
+};
+
 // Middleware
-app.use(cors());
-// Aumentar el límite de tamaño para JSON
+app.use(cors(corsOptions));// Aumentar el límite de tamaño para JSON
 app.use(bodyParser.json({ limit: '10mb' }));
 
 // Configuración de la conexión a PostgreSQL
