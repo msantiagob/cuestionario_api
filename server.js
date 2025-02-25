@@ -8,12 +8,12 @@ require('dotenv').config();
 const app = express();
 
 // Middleware
+// Reemplaza la configuración restrictiva de CORS con una abierta
 app.use(
   cors({
-    origin: ['https://jolly-cranachan-c4623d.netlify.app', 'https://cuestionario.sonmyd.com'],
-    methods: ['POST', 'OPTIONS'],
-    allowedHeaders: ['Content-Type'],
-    optionsSuccessStatus: 200
+    origin: '*', // Permite cualquier origen
+    methods: ['POST'], // Permite todos los métodos
+    allowedHeaders: '*', // Permite cualquier encabezado // Status 200 para respuestas OPTIONS
   })
 );
 app.use(bodyParser.json({ limit: '10mb' }));
