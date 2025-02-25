@@ -10,9 +10,10 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    origin: 'https://cuestionario.sonmyd.com',
-    methods: ['POST'],
-    optionsSuccessStatus: 200,
+    origin: ['https://jolly-cranachan-c4623d.netlify.app', 'https://cuestionario.sonmyd.com'],
+    methods: ['POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type'],
+    optionsSuccessStatus: 200
   })
 );
 app.use(bodyParser.json({ limit: '10mb' }));
